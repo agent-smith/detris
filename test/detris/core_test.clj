@@ -99,28 +99,28 @@
     (is (= 4 (calc-row-height "Q0,Q1" false)))))
 
 (deftest calc-row-height-test
-  (testing "Row height should be 2 when adding: Q0,Q2,Q4,Q6,Q8"
-    (is (= 2 (calc-row-height "Q0,Q2,Q4,Q6,Q8" false)))))
+  (testing "Row height should be 0 when adding: Q0,Q2,Q4,Q6,Q8"
+    (is (= 0 (calc-row-height "Q0,Q2,Q4,Q6,Q8" false)))))
 
 (deftest calc-row-height-test
-  (testing "Row height should be 4 when adding: Q0,Q2,Q4,Q6,Q8,Q1"
-    (is (= 4 (calc-row-height "Q0,Q2,Q4,Q6,Q8,Q1" false)))))
+  (testing "Row height should be 2 when adding: Q0,Q2,Q4,Q6,Q8,Q1"
+    (is (= 2 (calc-row-height "Q0,Q2,Q4,Q6,Q8,Q1" false)))))
 
 (deftest calc-row-height-test
-  (testing "Row height should be 6 when adding: Q0,Q2,Q4,Q6,Q8,Q1,Q1"
-    (is (= 6 (calc-row-height "Q0,Q2,Q4,Q6,Q8,Q1,Q1" false)))))
+  (testing "Row height should be 4 when adding: Q0,Q2,Q4,Q6,Q8,Q1,Q1"
+    (is (= 4 (calc-row-height "Q0,Q2,Q4,Q6,Q8,Q1,Q1" false)))))
 
 (deftest calc-row-height-test
-  (testing "Row height should be 2 when adding: I0,I4,Q8"
-    (is (= 2 (calc-row-height "I0,I4,Q8" false)))))
+  (testing "Row height should be 0 when adding: I0,I4,Q8"
+    (is (= 0 (calc-row-height "I0,I4,Q8" false)))))
 
 (deftest calc-row-height-test
-  (testing "Row height should be 3 when adding: I0,I4,Q8,I0,I4"
-    (is (= 3 (calc-row-height "I0,I4,Q8,I0,I4" false)))))
+  (testing "Row height should be 1 when adding: I0,I4,Q8,I0,I4"
+    (is (= 1 (calc-row-height "I0,I4,Q8,I0,I4" false)))))
 
 (deftest calc-row-height-test
-  (testing "Row height should be 3 when adding: L0,J2,L4,J6,Q8"
-    (is (= 3 (calc-row-height "L0,J2,L4,J6,Q8" false)))))
+  (testing "Row height should be 2 when adding: L0,J2,L4,J6,Q8"
+    (is (= 2 (calc-row-height "L0,J2,L4,J6,Q8" false)))))
 
 (deftest calc-row-height-test
   (testing "Row height should be 3 when adding: L0,Z1,Z3,Z5,Z7"
@@ -135,12 +135,12 @@
     (is (= 2 (calc-row-height "T0,T3,I6,I6" false)))))
 
 (deftest calc-row-height-test
-  (testing "Row height should be 3 when adding: I0,I6,S4"
-    (is (= 3 (calc-row-height "I0,I6,S4" false)))))
+  (testing "Row height should be 1 when adding: I0,I6,S4"
+    (is (= 1 (calc-row-height "I0,I6,S4" false)))))
 
 (deftest calc-row-height-test
-  (testing "Row height should be 3 when adding: T1,Z3,I4"
-    (is (= 3 (calc-row-height "T1,Z3,I4" false)))))
+  (testing "Row height should be 4 when adding: T1,Z3,I4"
+    (is (= 4 (calc-row-height "T1,Z3,I4" false)))))
 
 (deftest calc-row-height-test
   (testing "Row height should be 4 when adding: L0,J3,L5,J8,T1"
@@ -163,8 +163,8 @@
     (is (= 8 (calc-row-height "S0,S2,S4,S6" false)))))
 
 (deftest calc-row-height-test
-  (testing "Row height should be 10 when adding: S0,S2,S4,S5,Q8,Q8,Q8,Q8,T1,Q1,I0,Q4"
-    (is (= 10 (calc-row-height "S0,S2,S4,S5,Q8,Q8,Q8,Q8,T1,Q1,I0,Q4" false)))))
+  (testing "Row height should be 9 when adding: S0,S2,S4,S5,Q8,Q8,Q8,Q8,T1,Q1,I0,Q4"
+    (is (= 9 (calc-row-height "S0,S2,S4,S5,Q8,Q8,Q8,Q8,T1,Q1,I0,Q4" false)))))
 
 (deftest calc-row-height-test
   (testing "Row height should be 7 when adding: L0,J3,L5,J8,T1,T6,S2,Z5,T0,T7"
