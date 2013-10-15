@@ -9,7 +9,9 @@ The application is a simplified game of Tetris played from reading the "input.tx
 
 ## Installation
 
-If you don't have lein, one of the ways to install is like this:
+I'm using Clojure 1.5.1
+
+Also, if you don't have lein, one of the ways to install is like this:
 > cd; wget https://raw.github.com/technomancy/leiningen/stable/bin/lein
 > sudo cp lein /usr/bin/lein
 > sudo chmod ugo+rx /usr/bin/lein
