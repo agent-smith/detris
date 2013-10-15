@@ -27,7 +27,7 @@ To build the the uberjar:
 > lein uberjar
 
 To run with the uberjar (from the base project dir):
-> java -jar target/drw-0.1.0-SNAPSHOT-standalone.jar
+> java -jar target/detris-0.1.0-SNAPSHOT-standalone.jar
 
 Note: Currently, the output.txt is appended to on each run.  Until I clean up the file programmatically, just do a remove before the run:
 > rm -f output.txt
