@@ -404,6 +404,51 @@
                            J 3))))
   )
 
+;;; Sometimes, when a non-solid letter is moved down, it will have some of it's
+;;; residual self left over.  So, we have the ability to zero out the places in
+;;; it's hard path (i.e. the bottom most part of the letter).
+(deftest zero-offset-letter-test
+  (testing "Should place zeros in the offset and offset+1 cols for L"
+    (is (= [[1 1 0 0 1 1]
+            [1 1 0 0 1 1]
+            [1 1 0 0 1 1]]
+           (zero-offset-letter [[1 1 1 1 1 1]
+                                [1 1 1 1 1 1]
+                                [1 1 1 1 1 1]] L 2))))
+
+  (testing "Should place zeros in the offset and offset+1 cols for J"
+    (is (= [[1 1 0 0 1 1]
+            [1 1 0 0 1 1]
+            [1 1 0 0 1 1]]
+           (zero-offset-letter [[1 1 1 1 1 1]
+                                [1 1 1 1 1 1]
+                                [1 1 1 1 1 1]] J 2))))
+
+  (testing "Should place zeros in the offset and offset+1 cols for S"
+    (is (= [[1 1 0 0 1 1]
+            [1 1 0 0 1 1]
+            [1 1 0 0 1 1]]
+           (zero-offset-letter [[1 1 1 1 1 1]
+                                [1 1 1 1 1 1]
+                                [1 1 1 1 1 1]] S 2))))
+
+  (testing "Should place zeros in the offset+1 and offset+2 cols for Z"
+    (is (= [[1 1 1 0 0 1]
+            [1 1 1 0 0 1]
+            [1 1 1 0 0 1]]
+           (zero-offset-letter [[1 1 1 1 1 1]
+                                [1 1 1 1 1 1]
+                                [1 1 1 1 1 1]] Z 2))))
+
+  (testing "Should place zeros in the offset and offset+1 cols for T"
+    (is (= [[1 1 1 0 1 1]
+            [1 1 1 0 1 1]
+            [1 1 1 0 1 1]]
+           (zero-offset-letter [[1 1 1 1 1 1]
+                                [1 1 1 1 1 1]
+                                [1 1 1 1 1 1]] T 2))))
+  )
+
 
 (deftest calc-row-height-test
   (testing "Row height should be 2 when adding: Q0"
@@ -463,6 +508,6 @@
   (testing "Row height should be 8 when adding: S0,S2,S4,S5,Q8,Q8,Q8,Q8,T1,Q1,I0,Q4"
     (is (= 8 (calc-row-height "S0,S2,S4,S5,Q8,Q8,Q8,Q8,T1,Q1,I0,Q4" false))))
 
-  (testing "Row height should be 2 when adding: L0,J3,L5,J8,T1,T6,S2,Z5,T0,T7"
-    (is (= 2 (calc-row-height "L0,J3,L5,J8,T1,T6,S2,Z5,T0,T7" false))))
+  (testing "Row height should be 0 when adding: L0,J3,L5,J8,T1,T6,S2,Z5,T0,T7"
+    (is (= 0 (calc-row-height "L0,J3,L5,J8,T1,T6,S2,Z5,T0,T7" false))))
   )

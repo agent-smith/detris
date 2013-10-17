@@ -124,13 +124,32 @@
 (defn remove-empty-rows [board]
   (into [] (remove row-empty? board)))
 
-; One day I will laugh at this fn and refator it effortlessly
+(defn zero-offset-cols [row offset set-last]
+  (reduce (fn [acc [idx row]]
+            (assoc acc idx row))
+          row
+          (if set-last
+            {offset 0, (inc offset) 0}
+            {offset 0})))
+
+
+(defn zero-offset-letter [rows letter offset]
+  (cond (or (= L letter) (= J letter) (= S letter))
+          (into [] (for [x rows] (zero-offset-cols x offset true)))
+        (or (= Z letter))
+          (into [] (for [x rows] (zero-offset-cols x (inc offset) true)))
+        (= T letter)
+          (into [] (for [x rows] (zero-offset-cols x (inc offset) false)))
+        :else
+          rows))
+
+; one day I will prob laugh at this fn and refator it effortlessly
 (defn place-on-board [board letter offset]
   (let [padded-board (add-letter-to-top board letter offset)]
     (let [end (letter-level padded-board letter offset)]
         (let [begin (- end (dec (count letter)))
               letter-rows (extract-rows padded-board 0 (dec (count letter)))
-              board-rows (extract-rows padded-board begin end)]
+              board-rows (zero-offset-letter (extract-rows padded-board begin end) letter offset)]
           (let [merged-rows (merge-n-rows letter-rows board-rows)
                 padded-letter (pad-letter letter offset)]
             (let [replaced-rows (replace-rows padded-board begin merged-rows)
