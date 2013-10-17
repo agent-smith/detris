@@ -2,7 +2,13 @@
   (:gen-class)
   (:require [clojure.java.io :as io]))
 
-(def BOARD [])
+(def BOARD-WIDTH 10)
+(def MAX-BOARD-HEIGHT 100)
+
+(def BOARD [[0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]])
 
 (def Q [[1 1]
         [1 1]])
@@ -37,36 +43,55 @@
     "I" I))
 
 (defn new-vec [n] (into [] (repeat n 0)))
-(def new-row (new-vec 10))
+(def new-row (new-vec BOARD-WIDTH))
 
 (defn width [x] (count (first x)))
 (defn height [x] (count x))
 
 (defn sum-row [row] (reduce + row))
 
-(defn row-full? [row] (= 10 (sum-row row)))
-
-(defn add-to-top [board row]
-  (into [] (concat [row] board)))
-
-(defn replace-in-row [row replacee offset]
-  (into [] (concat (subvec row 0 offset) replacee (subvec row (+ offset (count replacee))))))
+(defn row-full? [row] (= BOARD-WIDTH (sum-row row)))
+(defn row-empty? [row] (= 0 (sum-row row)))
 
 (defn pad [v length offset]
   (let [front (new-vec offset)
         back (new-vec (- length (+ offset (count v))))]
     (into [] (concat front v back))))
 
-(defn remove-last [v]
-  (if (or (empty? v) (= 1 (count v))) []
-      (subvec v 0 (- (count v) 1))))
+(defn pad-letter [letter offset]
+  (loop [padded-letter letter
+         letter-row 0]
+    (cond (> letter-row (- (count letter) 1)) padded-letter
+          :else (recur (assoc padded-letter letter-row (pad (get padded-letter letter-row) BOARD-WIDTH offset))
+                       (inc letter-row)))))
 
 (defn add-letter-to-top [board letter offset]
-    (loop [mod-board board
-           partial-letter letter]
-      (cond (empty? partial-letter) mod-board
-            :else (recur (add-to-top mod-board (pad (last partial-letter) 10 offset))
-                         (remove-last partial-letter)))))
+  (into [] (concat (pad-letter letter offset) board)))
+
+(defn zero-rows [n]
+  (into [] (for [x (range 0 n)] (vec new-row))))
+
+(defn zero-out-letter [letter]
+  (zero-rows (count letter)))
+
+(defn extract-rows [board start end]
+  (subvec board start (inc end)))
+
+(defn merge-rows [row1 row2]
+  (loop [result row1
+         i 0]
+    (cond (= i (count row1)) result
+          :else
+            (let [col-sum (+ (get row1 i) (get row2 i))]
+              (recur (assoc result i (if (> col-sum 0) 1 0))
+                     (inc i))))))
+
+(defn merge-n-rows [rows1 rows2]
+  (loop [result rows1
+         acc 0]
+    (cond (= acc (count rows1)) result
+          :else (recur (assoc result acc (merge-rows (get rows1 acc) (get rows2 acc)))
+                       (inc acc)))))
 
 (defn row-conflict? [row1 row2]
   (loop [row1 row1
@@ -75,32 +100,46 @@
       (> (+ (first row1) (first row2)) 1) true
       :else (recur (rest row1) (rest row2)))))
 
-(defn place-on-board [board letter offset row]
-    (cond (empty? letter)
-            board
+(defn letter-level [board letter offset]
+  (let [letter-rows (pad-letter letter offset)]
+    (loop [acc (count letter-rows)]
+      (cond (= acc (count board)) (dec acc)
+            (row-conflict? (get board acc) (last letter-rows)) (dec acc)
+            (and (> (count letter-rows) 1)
+                 (row-conflict? (get board acc) (get letter-rows (- (count letter-rows) 2)))) acc
+            :else (recur (inc acc))))))
 
-          (or (> row (count board)) (= row (count board)))
-            (place-on-board (add-letter-to-top board letter offset)
-                            (remove-last letter)
-                            offset
-                            (inc row))
+(defn replace-rows [board begin rows]
+  (loop [mod-board board
+         r-acc 0
+         b-acc begin]
+    (cond (= r-acc (count rows)) mod-board
+          :else (recur (assoc mod-board b-acc (get rows r-acc))
+                       (inc r-acc)
+                       (inc b-acc)))))
 
-          (and (= 0 row) (row-conflict? (pad (last letter) 10 offset) (get board row)))
-            (add-letter-to-top board letter offset)
+(defn remove-full-rows [board]
+  (remove row-full? board))
 
-          (row-conflict? (pad (last letter) 10 offset) (get board row))
-            (place-on-board (assoc board
-                                   (dec row)
-                                   (replace-in-row (get board (dec row)) (last letter) offset))
-                            (remove-last letter)
-                            offset
-                            (dec row))
+(defn remove-empty-rows [board]
+  (into [] (remove row-empty? board)))
 
-          :else
-            (place-on-board board
-                            letter
-                            offset
-                            (inc row))))
+; One day I will laugh at this fn and refator it effortlessly
+(defn place-on-board [board letter offset]
+  (let [padded-board (add-letter-to-top board letter offset)]
+    (let [end (letter-level padded-board letter offset)]
+        (let [begin (- end (dec (count letter)))
+              letter-rows (extract-rows padded-board 0 (dec (count letter)))
+              board-rows (extract-rows padded-board begin end)]
+          (let [merged-rows (merge-n-rows letter-rows board-rows)
+                padded-letter (pad-letter letter offset)]
+            (let [replaced-rows (replace-rows padded-board begin merged-rows)
+                  letter-end (dec (count letter))]
+               (remove-full-rows
+                 (remove-empty-rows
+                   (cond (= end letter-end) replaced-rows
+                         (> (- end letter-end) letter-end) (replace-rows replaced-rows 0 (zero-out-letter letter))
+                         :else (replace-rows replaced-rows 0 (zero-rows (- end letter-end))))))))))))
 
 (defn write-ans [file-path ans]
   (with-open [wtr (io/writer file-path :append true)]
@@ -118,7 +157,7 @@
                 (do
                   (let [letter (convert-to-letter (str (first (first letter-nums))))
                         offset (read-string (str (get (first letter-nums) 1)))]
-                    (recur (place-on-board board letter offset 0)
+                    (recur (place-on-board board letter offset)
                            (rest letter-nums)))))))
 
 (defn play-game [fname]
