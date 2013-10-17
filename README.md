@@ -2,7 +2,7 @@
 
 This project contains my first attempt at using the clojure language.
 
-I'd still like to learn more tricks with Clojure, since I could improve on making the code less verbose and replacing my use of loops with more idiomatic functional paradigms.  I look forward to learning more about this powerful language!  Having been a Java programmer for the past decade, I have to say learning a little Scala and Clojure has really been an eye opener.
+I'd still like to learn more tricks with Clojure, since I could improve on making the code less verbose and replacing my use of loops with more idiomatic functional paradigms.  I look forward to learning more about this powerful language!  Having been a Java programmer for the past decade, I have to say, learning some Scala and Clojure has really been an eye opener.
 
 The application is a simplified game of Tetris played from reading the "input.txt" file for the moves.  Each line represents a new board.   Basically, it has all the basic principles you love about the original game, but dummied down so there's no rotating or horizontal movement of pieces.
 
