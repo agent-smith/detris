@@ -180,6 +180,7 @@
                            (rest letter-nums)))))))
 
 (defn play-game [fname]
+  (io/delete-file "output.txt" true)
   (with-open [reader (io/reader fname)]
     (doseq [line (line-seq reader)]
       (calc-row-height line true))))
