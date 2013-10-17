@@ -19,10 +19,12 @@ Also, if you don't have lein, one of the ways to install is like this:
 
 ## Usage
 
-The app takes no arguments, and requires that an "input.txt" exists in the project directory (the project already provides one of these).  The results will be written to "output.txt" at the same location.
-
 To run using Leiningen: 
-> lein run
+> lein run [inputfile]
+
+The optional inputfile arg is the location of some file that contains moves for teh detris board.
+If no option is specified, the default will be "input.txt", which exists in the project directory (the project already provides one of these).  
+The results will be written to "output.txt" at the same location.
 
 To build the the uberjar: 
 > lein uberjar
