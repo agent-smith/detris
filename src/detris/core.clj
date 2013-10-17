@@ -179,12 +179,15 @@
                     (recur (place-on-board board letter offset)
                            (rest letter-nums)))))))
 
+(def DEFAULT-INPUT-FILE "input.txt")
+(def DEFAULT-OUTPUT-FILE "output.txt")
+
 (defn play-game [fname]
-  (io/delete-file "output.txt" true)
+  (io/delete-file DEFAULT-OUTPUT-FILE true)
   (with-open [reader (io/reader fname)]
     (doseq [line (line-seq reader)]
       (calc-row-height line true))))
 
 (defn -main
   [& args]
-    (play-game "input.txt"))
+    (play-game (if args (first args) DEFAULT-INPUT-FILE)))
