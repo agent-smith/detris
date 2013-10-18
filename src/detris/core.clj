@@ -143,7 +143,7 @@
         :else
           rows))
 
-; one day I will prob laugh at this fn and refator it effortlessly
+; one day I will prob laugh at this fn and refactor it effortlessly
 (defn place-on-board [board letter offset]
   (let [padded-board (add-letter-to-top board letter offset)]
     (let [end (letter-level padded-board letter offset)]
