@@ -373,7 +373,7 @@
                             [1 1 0 0 0 1 0 0 1 1]]
                            S 1))))
 
-  (testing "S should hit a conflict at level 1."
+  (testing "S should hit a conflict at level 1, but it's bottom most piece is at level 2."
     (is (= 2 (letter-level [[0 0 0 0 1 1 0 0 0 0]
                             [0 0 0 1 1 0 0 0 0 0]
                             [1 1 0 0 0 1 0 0 1 1]
@@ -387,7 +387,7 @@
                             [1 1 0 0 0 1 0 0 1 1]]
                            Z 2))))
 
-  (testing "Z should hit a conflict at level 1."
+  (testing "Z should hit a conflict at level 1, but it's bottom most piece is at level 2."
     (is (= 2 (letter-level [[0 1 1 0 0 0 0 0 0 0]
                             [0 0 1 1 0 0 0 0 0 0]
                             [1 1 0 0 0 1 0 0 1 1]
@@ -408,7 +408,7 @@
                             [1 1 0 0 0 1 0 0 1 1]]
                            T 2))))
 
-  (testing "T should hit a conflict at level 1."
+  (testing "T should hit a conflict at level 1, but it's bottom most piece is at level 2."
     (is (= 2 (letter-level [[0 1 1 1 0 0 0 0 0 0]
                             [0 0 1 0 0 0 0 0 0 0]
                             [1 1 0 0 0 1 0 0 1 1]
