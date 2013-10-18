@@ -47,22 +47,30 @@
 
 (deftest pad-letter-test
   (testing "Pads Q (at offset 2) with zeros, expanding Q to the BOARD-WIDTH."
-    (is (= [[0 0 1 1 0 0 0 0 0 0] [0 0 1 1 0 0 0 0 0 0]] (pad-letter Q 2))))
+    (is (= [[0 0 1 1 0 0 0 0 0 0]
+            [0 0 1 1 0 0 0 0 0 0]] (pad-letter Q 2))))
 
   (testing "Pads L (at offset 2) with zeros, expanding L to the BOARD-WIDTH."
-    (is (= [[0 0 1 0 0 0 0 0 0 0] [0 0 1 0 0 0 0 0 0 0] [0 0 1 1 0 0 0 0 0 0]] (pad-letter L 2))))
+    (is (= [[0 0 1 0 0 0 0 0 0 0]
+            [0 0 1 0 0 0 0 0 0 0]
+            [0 0 1 1 0 0 0 0 0 0]] (pad-letter L 2))))
 
   (testing "Pads J (at offset 2) with zeros, expanding J to the BOARD-WIDTH."
-    (is (= [[0 0 0 1 0 0 0 0 0 0] [0 0 0 1 0 0 0 0 0 0] [0 0 1 1 0 0 0 0 0 0]] (pad-letter J 2))))
+    (is (= [[0 0 0 1 0 0 0 0 0 0]
+            [0 0 0 1 0 0 0 0 0 0]
+            [0 0 1 1 0 0 0 0 0 0]] (pad-letter J 2))))
 
   (testing "Pads S (at offset 2) with zeros, expanding S to the BOARD-WIDTH."
-    (is (= [[0 0 0 1 1 0 0 0 0 0] [0 0 1 1 0 0 0 0 0 0]] (pad-letter S 2))))
+    (is (= [[0 0 0 1 1 0 0 0 0 0]
+            [0 0 1 1 0 0 0 0 0 0]] (pad-letter S 2))))
 
   (testing "Pads Z (at offset 2) with zeros, expanding Z to the BOARD-WIDTH."
-    (is (= [[0 0 1 1 0 0 0 0 0 0] [0 0 0 1 1 0 0 0 0 0]] (pad-letter Z 2))))
+    (is (= [[0 0 1 1 0 0 0 0 0 0]
+            [0 0 0 1 1 0 0 0 0 0]] (pad-letter Z 2))))
 
   (testing "Pads T (at offset 2) with zeros, expanding T to the BOARD-WIDTH."
-    (is (= [[0 0 1 1 1 0 0 0 0 0] [0 0 0 1 0 0 0 0 0 0]] (pad-letter T 2))))
+    (is (= [[0 0 1 1 1 0 0 0 0 0]
+            [0 0 0 1 0 0 0 0 0 0]] (pad-letter T 2))))
 
   (testing "Pads I (at offset 2) with zeros, expanding I to the BOARD-WIDTH."
     (is (= [[0 0 1 1 1 1 0 0 0 0]] (pad-letter I 2))))
@@ -72,22 +80,29 @@
 
 (deftest zero-out-letter-test
   (testing "Creates N zero vectors, where N is the height of Q."
-    (is (= [[0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter Q))))
+    (is (= [[0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter Q))))
 
   (testing "Creates N zero vectors, where N is the height of L."
-    (is (= [[0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter L))))
+    (is (= [[0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter L))))
 
   (testing "Creates N zero vectors, where N is the height of J."
-    (is (= [[0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter J))))
+    (is (= [[0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter J))))
 
   (testing "Creates N zero vectors, where N is the height of S."
-    (is (= [[0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter S))))
+    (is (= [[0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter S))))
 
   (testing "Creates N zero vectors, where N is the height of Z."
-    (is (= [[0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter Z))))
+    (is (= [[0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter Z))))
 
   (testing "Creates N zero vectors, where N is the height of T."
-    (is (= [[0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter T))))
+    (is (= [[0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]] (zero-out-letter T))))
 
   (testing "Creates N zero vectors, where N is the height of I."
     (is (= [[0 0 0 0 0 0 0 0 0 0]] (zero-out-letter I))))
@@ -185,29 +200,6 @@
   )
 
 
-(deftest place-on-board-test
-  (testing "Adding letter to an existing board."
-    (is (= [[1 1 1 1 0 1 1 0 1 1]
-            [1 1 1 1 0 1 1 0 1 1]]
-
-           (place-on-board
-            [[1 1 0 0 0 1 1 0 1 1]
-             [1 1 0 0 0 1 1 0 1 1]]
-            Q 2)))))
-
-(deftest place-on-board-test
-  (testing "Adding letter to an existing board."
-    (is (= [[0 0 1 1 0 0 0 0 0 0]
-            [0 0 1 1 0 0 0 0 0 0]]
-
-           (place-on-board
-            [[0 0 0 0 0 0 0 0 0 0]
-             [0 0 0 0 0 0 0 0 0 0]
-             [0 0 0 0 0 0 0 0 0 0]
-             [0 0 0 0 0 0 0 0 0 0]]
-            Q 2)))))
-
-
 (deftest extract-rows-test
   (testing "Adding letter to an existing board."
     (is (= [[1 1 1 1 1 1 1 1 1 1]
@@ -263,6 +255,81 @@
             [[2 2 2 2 2 2 2 2 2 2]
              [3 3 3 3 3 3 3 3 3 3]
              [4 4 4 4 4 4 4 4 4 4]]))))
+  )
+
+(deftest remove-empty-rows-test
+  (testing "Remove empty rows on a board which contains some empty rows."
+    (is (= [[1 1 1 1 1 1 1 1 1 1]
+            [3 3 3 3 3 3 3 3 3 3]
+            [5 5 5 5 5 5 5 5 5 5]]
+
+           (remove-empty-rows
+            [[0 0 0 0 0 0 0 0 0 0]
+             [1 1 1 1 1 1 1 1 1 1]
+             [0 0 0 0 0 0 0 0 0 0]
+             [3 3 3 3 3 3 3 3 3 3]
+             [0 0 0 0 0 0 0 0 0 0]
+             [5 5 5 5 5 5 5 5 5 5]
+             [0 0 0 0 0 0 0 0 0 0]]))))
+
+  (testing "Remove empty rows on a board which contains no empty rows."
+    (is (= [[1 1 1 1 1 1 1 1 1 1]
+            [2 2 2 2 2 2 2 2 2 2]
+            [3 3 3 3 3 3 3 3 3 3]
+            [4 4 4 4 4 4 4 4 4 4]]
+
+           (remove-empty-rows
+            [[1 1 1 1 1 1 1 1 1 1]
+             [2 2 2 2 2 2 2 2 2 2]
+             [3 3 3 3 3 3 3 3 3 3]
+             [4 4 4 4 4 4 4 4 4 4]]))))
+
+  (testing "Remove empty rows on a board which contains all empty rows."
+    (is (= []
+
+           (remove-empty-rows
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]]))))
+  )
+
+(deftest remove-full-rows-test
+  (testing "Remove full rows on a board which contains some full rows."
+    (is (= [[0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]]
+
+           (remove-full-rows
+            [[0 0 0 0 0 0 0 0 0 0]
+             [1 1 1 1 1 1 1 1 1 1]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 1 1 1 1 1 1 1 1]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 1 1 1 1 1 1 1 1]
+             [0 0 0 0 0 0 0 0 0 0]]))))
+
+  (testing "Remove full rows on a board which contains no full rows."
+    (is (= [[0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]
+            [0 0 0 0 0 0 0 0 0 0]]
+
+           (remove-full-rows
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]]))))
+
+  (testing "Remove full rows on a board which contains all full rows."
+    (is (= []
+
+           (remove-full-rows
+            [[1 1 1 1 1 1 1 1 1 1]
+             [1 1 1 1 1 1 1 1 1 1]
+             [1 1 1 1 1 1 1 1 1 1]
+             [1 1 1 1 1 1 1 1 1 1]]))))
   )
 
 
@@ -406,47 +473,253 @@
 
 ;;; Sometimes, when a non-solid letter is moved down, it will have some of it's
 ;;; residual self left over.  So, we have the ability to zero out the places in
-;;; it's hard path (i.e. the bottom most part of the letter).
+;;; its hard path (i.e. the bottom most part of the letter).
 (deftest zero-offset-letter-test
   (testing "Should place zeros in the offset and offset+1 cols for L"
     (is (= [[1 1 0 0 1 1]
             [1 1 0 0 1 1]
             [1 1 0 0 1 1]]
-           (zero-offset-letter [[1 1 1 1 1 1]
-                                [1 1 1 1 1 1]
-                                [1 1 1 1 1 1]] L 2))))
+
+           (zero-offset-letter
+            [[1 1 1 1 1 1]
+             [1 1 1 1 1 1]
+             [1 1 1 1 1 1]] L 2))))
 
   (testing "Should place zeros in the offset and offset+1 cols for J"
     (is (= [[1 1 0 0 1 1]
             [1 1 0 0 1 1]
             [1 1 0 0 1 1]]
-           (zero-offset-letter [[1 1 1 1 1 1]
-                                [1 1 1 1 1 1]
-                                [1 1 1 1 1 1]] J 2))))
+
+           (zero-offset-letter
+            [[1 1 1 1 1 1]
+             [1 1 1 1 1 1]
+             [1 1 1 1 1 1]] J 2))))
 
   (testing "Should place zeros in the offset and offset+1 cols for S"
     (is (= [[1 1 0 0 1 1]
             [1 1 0 0 1 1]
             [1 1 0 0 1 1]]
-           (zero-offset-letter [[1 1 1 1 1 1]
-                                [1 1 1 1 1 1]
-                                [1 1 1 1 1 1]] S 2))))
+
+           (zero-offset-letter
+            [[1 1 1 1 1 1]
+             [1 1 1 1 1 1]
+             [1 1 1 1 1 1]] S 2))))
 
   (testing "Should place zeros in the offset+1 and offset+2 cols for Z"
     (is (= [[1 1 1 0 0 1]
             [1 1 1 0 0 1]
             [1 1 1 0 0 1]]
-           (zero-offset-letter [[1 1 1 1 1 1]
-                                [1 1 1 1 1 1]
-                                [1 1 1 1 1 1]] Z 2))))
 
-  (testing "Should place zeros in the offset and offset+1 cols for T"
+           (zero-offset-letter
+            [[1 1 1 1 1 1]
+             [1 1 1 1 1 1]
+             [1 1 1 1 1 1]] Z 2))))
+
+  (testing "Should place zeros in the offset+1 col for T"
     (is (= [[1 1 1 0 1 1]
             [1 1 1 0 1 1]
             [1 1 1 0 1 1]]
-           (zero-offset-letter [[1 1 1 1 1 1]
-                                [1 1 1 1 1 1]
-                                [1 1 1 1 1 1]] T 2))))
+
+           (zero-offset-letter
+            [[1 1 1 1 1 1]
+             [1 1 1 1 1 1]
+             [1 1 1 1 1 1]] T 2))))
+  )
+
+
+(deftest place-on-board-test
+  (testing "Adding Q to an existing board, which falls through the the bottom."
+    (is (= [[1 1 1 1 0 1 1 0 1 1]
+            [1 1 1 1 0 1 1 0 1 1]]
+
+           (place-on-board
+            [[1 1 0 0 0 1 1 0 1 1]
+             [1 1 0 0 0 1 1 0 1 1]]
+            Q 2))))
+
+  (testing "Adding S to an existing board, which falls through the the bottom."
+    (is (= [[1 1 0 1 1 1 1 0 1 1]
+            [1 1 1 1 0 1 1 0 1 1]]
+
+           (place-on-board
+            [[1 1 0 0 0 1 1 0 1 1]
+             [1 1 0 0 0 1 1 0 1 1]]
+            S 2))))
+
+  (testing "Adding Z to an existing board, which falls through the the bottom."
+    (is (= [[1 1 1 1 0 1 1 0 1 1]
+            [1 1 0 1 1 1 1 0 1 1]]
+
+           (place-on-board
+            [[1 1 0 0 0 1 1 0 1 1]
+             [1 1 0 0 0 1 1 0 1 1]]
+            Z 2))))
+
+  (testing "Adding L to an existing board, which falls through the the bottom."
+    (is (= [[0 0 1 0 0 0 0 0 0 0]
+            [1 1 1 0 0 1 1 0 1 1]
+            [1 1 1 1 0 1 1 0 1 1]]
+
+           (place-on-board
+            [[1 1 0 0 0 1 1 0 1 1]
+             [1 1 0 0 0 1 1 0 1 1]]
+            L 2))))
+
+  (testing "Adding J to an existing board, which falls through the the bottom."
+    (is (= [[0 0 0 1 0 0 0 0 0 0]
+            [1 1 0 1 0 1 1 0 1 1]
+            [1 1 1 1 0 1 1 0 1 1]]
+
+           (place-on-board
+            [[1 1 0 0 0 1 1 0 1 1]
+             [1 1 0 0 0 1 1 0 1 1]]
+            J 2))))
+
+  (testing "Adding T to an existing board, which falls through the the bottom."
+    (is (= [[1 1 1 1 1 1 1 0 1 1]
+            [1 1 0 1 0 1 1 0 1 1]]
+
+           (place-on-board
+            [[1 1 0 0 0 1 1 0 1 1]
+             [1 1 0 0 0 1 1 0 1 1]]
+            T 2))))
+
+  (testing "Adding I to an existing board, which falls through the the bottom."
+    (is (= [[1 1 0 0 0 0 1 0 1 1]
+            [1 1 1 1 1 1 1 0 1 1]]
+
+           (place-on-board
+            [[1 1 0 0 0 0 1 0 1 1]
+             [1 1 0 0 0 0 1 0 1 1]]
+            I 2))))
+
+  (testing "Adding Q to an existing board, which falls through until it hits an occupied row."
+    (is (= [[0 0 0 1 1 0 0 0 0 0]
+            [0 0 0 1 1 0 0 0 0 0]
+            [1 1 0 0 1 1 1 1 1 1]
+            [1 1 0 0 1 1 1 1 1 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 1 1 1]
+             [1 1 0 0 1 1 1 1 1 1]]
+            Q 3))))
+
+  (testing "Adding S to an existing board, which falls through until it hits an occupied row."
+    (is (= [[0 0 1 1 0 0 0 0 0 0]
+            [0 1 1 0 0 0 0 0 0 0]
+            [1 1 0 0 1 1 1 1 1 1]
+            [1 1 0 0 1 1 1 1 1 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 1 1 1]
+             [1 1 0 0 1 1 1 1 1 1]]
+            S 1))))
+
+  (testing "Adding S to an existing board, which falls through until it hits an occupied row."
+    (is (= [[0 0 0 1 1 0 0 0 0 0]
+            [1 1 1 1 1 1 1 0 0 1]
+            [1 1 0 0 1 1 1 0 0 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 0 0 1]
+             [1 1 0 0 1 1 1 0 0 1]]
+            S 2))))
+
+  (testing "Adding Z to an existing board, which falls through until it hits an occupied row."
+    (is (= [[1 1 0 0 0 0 0 0 0 0]
+            [0 1 1 0 0 0 0 0 0 0]
+            [1 1 0 0 1 1 1 1 1 1]
+            [1 1 0 0 1 1 1 1 1 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 1 1 1]
+             [1 1 0 0 1 1 1 1 1 1]]
+            Z 0))))
+
+  (testing "Adding Z to an existing board, which falls through until it hits an occupied row."
+    (is (= [[0 1 1 0 0 0 0 0 0 0]
+            [1 1 1 1 1 1 1 0 0 1]
+            [1 1 0 0 1 1 1 0 0 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 0 0 1]
+             [1 1 0 0 1 1 1 0 0 1]]
+            Z 1))))
+
+  (testing "Adding T to an existing board, which falls through until it hits an occupied row."
+    (is (= [[1 1 1 0 0 0 0 0 0 0]
+            [0 1 0 0 0 0 0 0 0 0]
+            [1 1 0 0 1 1 1 1 1 1]
+            [1 1 0 0 1 1 1 1 1 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 1 1 1]
+             [1 1 0 0 1 1 1 1 1 1]]
+            T 0))))
+
+  (testing "Adding T to an existing board, which falls through until it hits an occupied row."
+    (is (= [[0 1 1 1 0 0 0 0 0 0]
+            [1 1 1 0 1 1 1 0 0 1]
+            [1 1 0 0 1 1 1 0 0 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 0 0 1]
+             [1 1 0 0 1 1 1 0 0 1]]
+            T 1))))
+
+  (testing "Adding I to an existing board, which falls through until it hits an occupied row."
+    (is (= [[0 1 1 1 1 0 0 0 0 0]
+            [1 1 0 0 1 1 1 0 0 1]
+            [1 1 0 0 1 1 1 0 0 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 0 0 1]
+             [1 1 0 0 1 1 1 0 0 1]]
+            I 1))))
+
+  (testing "Adding L to an existing board, which falls through until it hits an occupied row."
+    (is (= [[0 1 0 0 0 0 0 0 0 0]
+            [0 1 0 0 0 0 0 0 0 0]
+            [0 1 1 0 0 0 0 0 0 0]
+            [1 1 0 0 1 1 1 0 0 1]
+            [1 1 0 0 1 1 1 0 0 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 0 0 1]
+             [1 1 0 0 1 1 1 0 0 1]]
+            L 1))))
+
+  (testing "Adding J to an existing board, which falls through until it hits an occupied row."
+    (is (= [[0 0 1 0 0 0 0 0 0 0]
+            [0 0 1 0 0 0 0 0 0 0]
+            [0 1 1 0 0 0 0 0 0 0]
+            [1 1 0 0 1 1 1 0 0 1]
+            [1 1 0 0 1 1 1 0 0 1]]
+
+           (place-on-board
+            [[0 0 0 0 0 0 0 0 0 0]
+             [0 0 0 0 0 0 0 0 0 0]
+             [1 1 0 0 1 1 1 0 0 1]
+             [1 1 0 0 1 1 1 0 0 1]]
+            J 1))))
   )
 
 
