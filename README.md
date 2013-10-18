@@ -1,6 +1,6 @@
 # detris
 
-This project contains my first attempt at using the clojure language.
+This project contains my first attempt at using the Clojure language.
 
 I'd still like to learn more tricks with Clojure, since I could improve on making the code less verbose and replacing my use of loops with more idiomatic functional paradigms.  I look forward to learning more about this powerful language!  Having been a Java programmer for the past decade, I have to say, learning some Scala and Clojure has really been an eye opener.
 
@@ -10,7 +10,7 @@ The application is a simplified game of Tetris played from reading the "input.tx
 
 I'm using Clojure 1.5.1
 
-Also, if you don't have lein, one of the ways to install is like this:
+Also, if you don't have Leiningen, one of the ways to install is like this:
 > cd; wget https://raw.github.com/technomancy/leiningen/stable/bin/lein
 
 > sudo cp lein /usr/bin/lein
@@ -22,7 +22,7 @@ Also, if you don't have lein, one of the ways to install is like this:
 To run using Leiningen: 
 > lein run [inputfile]
 
-The optional inputfile arg is the location of some file that contains moves for teh detris board.
+The optional inputfile arg is the location of some file that contains moves for the detris board.
 If no option is specified, the default will be "input.txt", which exists in the project directory (the project already provides one of these).  
 The results will be written to "output.txt" at the same location.
 
