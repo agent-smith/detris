@@ -143,22 +143,21 @@
         :else
           rows))
 
-; one day I will prob laugh at this fn and refactor it effortlessly
 (defn place-on-board [board letter offset]
-  (let [padded-board (add-letter-to-top board letter offset)]
-    (let [end (letter-level padded-board letter offset)]
-        (let [begin (- end (dec (count letter)))
-              letter-rows (extract-rows padded-board 0 (dec (count letter)))
-              board-rows (zero-offset-letter (extract-rows padded-board begin end) letter offset)]
-          (let [merged-rows (merge-n-rows letter-rows board-rows)
-                padded-letter (pad-letter letter offset)]
-            (let [replaced-rows (replace-rows padded-board begin merged-rows)
-                  letter-end (dec (count letter))]
-               (remove-full-rows
-                 (remove-empty-rows
-                   (cond (= end letter-end) replaced-rows
-                         (> (- end letter-end) letter-end) (replace-rows replaced-rows 0 (zero-out-letter letter))
-                         :else (replace-rows replaced-rows 0 (zero-rows (- end letter-end))))))))))))
+  (let [padded-board  (add-letter-to-top board letter offset)
+        end           (letter-level padded-board letter offset)
+        begin         (- end (dec (count letter)))
+        letter-rows   (extract-rows padded-board 0 (dec (count letter)))
+        board-rows    (zero-offset-letter (extract-rows padded-board begin end) letter offset)
+        merged-rows   (merge-n-rows letter-rows board-rows)
+        padded-letter (pad-letter letter offset)
+        replaced-rows (replace-rows padded-board begin merged-rows)
+        letter-end    (dec (count letter))]
+    (remove-full-rows
+      (remove-empty-rows
+        (cond (= end letter-end) replaced-rows
+              (> (- end letter-end) letter-end) (replace-rows replaced-rows 0 (zero-out-letter letter))
+              :else (replace-rows replaced-rows 0 (zero-rows (- end letter-end))))))))
 
 (defn write-ans [file-path ans]
   (with-open [wtr (io/writer file-path :append true)]
