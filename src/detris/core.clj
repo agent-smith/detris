@@ -195,14 +195,14 @@
 
 (defn place-on-board [board letter offset]
   (let [padded-board  (add-letter-to-top board letter offset)
+        letter-end    (dec (height letter))
         end           (letter-level padded-board letter offset)
-        begin         (- end (dec (height letter)))
-        letter-rows   (extract-rows padded-board 0 (dec (height letter)))
+        begin         (- end letter-end)
+        letter-rows   (extract-rows padded-board 0 letter-end)
         board-rows    (zero-offset-letter (extract-rows padded-board begin end) letter offset)
         merged-rows   (merge-n-rows letter-rows board-rows)
         padded-letter (pad-letter letter offset)
-        replaced-rows (replace-rows padded-board begin merged-rows)
-        letter-end    (dec (height letter))]
+        replaced-rows (replace-rows padded-board begin merged-rows)]
     "Given a board and a letter, do the following:
     1) Place the padded letter, at the given offset, at the top of the board.
     2) Find the place where the letter will rest on the board at the given offset.
