@@ -57,6 +57,7 @@
   pad [v length offset]
   "For a given vector, of length offset, put zeros in front and back (i.e. pad)
   of the vector so that it's new length is equal to the given length."
+
   (let [front (new-vec offset)
         back  (new-vec (- length (+ offset (count v))))]
     (into [] (concat front v back))))
@@ -65,9 +66,10 @@
   pad-letter [letter offset]
   "For a given letter, pad it with zeros (in front and back) so that it is positioned,
   within a new vector, starting at the offset (0..length-1)."
+
   (loop [padded-letter letter
          letter-row 0]
-    (cond (> letter-row (- (count letter) 1)) padded-letter
+    (cond (> letter-row (- (height letter) 1)) padded-letter
           :else (recur (assoc padded-letter letter-row (pad (get padded-letter letter-row) BOARD-WIDTH offset))
                        (inc letter-row)))))
 
@@ -194,13 +196,13 @@
 (defn place-on-board [board letter offset]
   (let [padded-board  (add-letter-to-top board letter offset)
         end           (letter-level padded-board letter offset)
-        begin         (- end (dec (count letter)))
-        letter-rows   (extract-rows padded-board 0 (dec (count letter)))
+        begin         (- end (dec (height letter)))
+        letter-rows   (extract-rows padded-board 0 (dec (height letter)))
         board-rows    (zero-offset-letter (extract-rows padded-board begin end) letter offset)
         merged-rows   (merge-n-rows letter-rows board-rows)
         padded-letter (pad-letter letter offset)
         replaced-rows (replace-rows padded-board begin merged-rows)
-        letter-end    (dec (count letter))]
+        letter-end    (dec (height letter))]
     "Given a board and a letter, do the following:
     1) Place the padded letter, at the given offset, at the top of the board.
     2) Find the place where the letter will rest on the board at the given offset.
