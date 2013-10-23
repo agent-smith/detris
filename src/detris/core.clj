@@ -94,14 +94,7 @@
   The resulting row will also contain only 1s or 0s, where a 1 represents the merging
   of either a 1 & 0 or 1 & 1, and a 0 represents the merging of only a 0 & 0.  Thus,
   merging [1 1 0 0] and [1 0 1 0] would result in [1 1 1 0]."
-
-  (loop [result row1
-         i 0]
-    (cond (= i (count row1)) result
-          :else
-            (let [col-sum (+ (get row1 i) (get row2 i))]
-              (recur (assoc result i (if (> col-sum 0) 1 0))
-                     (inc i))))))
+  (into [] (map #(if (>= (+ %1 %2) 1) 1 0) row1 row2)))
 
 (defn merge-n-rows [rows1 rows2]
   "Applies the rules of merge-rows for each pair of vectors in N vectors."
@@ -164,15 +157,15 @@
   (into [] (remove row-empty? board)))
 
 
-(defn zero-offset-cols [row offset offset-plus-one]
-  "Given a vector, set the value at offset (and optionally offset+1) to 0."
+(defn zero-offset-cols [row col set-next-col]
+  "Given a vector, set the value at col (and optionally col+1) to 0."
 
   (reduce (fn [acc [idx row]]
             (assoc acc idx row))
           row
-          (if offset-plus-one
-            {offset 0, (inc offset) 0}
-            {offset 0})))
+          (if set-next-col
+            {col 0, (inc col) 0}
+            {col 0})))
 
 
 (defn zero-offset-letter [rows letter offset]
@@ -221,8 +214,9 @@
     (.write wtr (str ans "\n"))))
 
 (defn calc-row-height [line write-to-file]
-  "For all letter coordinates in the given line, place the letters on the board and calculate
-  the resulting board height.  Then, append the board hieght on new line in the given file."
+  "For all letter coordinates in the given line, place the letters on the board
+  and calculate the resulting board height.  Then, if write-to-file=true, append
+  the board hieght on new line in the given file."
 
       (loop [board BOARD
              letter-nums (clojure.string/split line #",")]
