@@ -97,7 +97,6 @@
   (into [] (map #(if (>= (+ %1 %2) 1) 1 0) row1 row2)))
 
 (defn merge-n-rows [rows1 rows2]
-  "Applies the rules of merge-rows for each pair of vectors in N vectors."
   (into [] (map #(merge-rows %1 %2) rows1 rows2)))
 
 (defn row-conflict? [row1 row2]
