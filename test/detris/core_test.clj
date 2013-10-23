@@ -221,15 +221,14 @@
                                  [0 0 0 0]))))
 
   (testing "Two rows are merged by replacing zeros with 1s, and leaving 1s alone."
-    (is (= [1 1 1 1] (merge-rows [1 0 1 1]
-                                 [1 1 0 1]))))
+    (is (= [1 1 1 0] (merge-rows [1 1 0 0]
+                                 [1 0 1 0]))))
   )
-
 
 (deftest merge-n-rows-test
   (testing "Similar to merge-rows, but merge N rows."
-    (is (= [[1 1 1] [1 1 1] [1 1 1]] (merge-n-rows [[1 0 0] [0 1 0] [0 0 1]]
-                                                   [[1 1 1] [1 0 1] [1 1 1]]))))
+    (is (= [[1 1 1] [1 1 1] [0 1 1]] (merge-n-rows [[1 0 0] [0 1 0] [0 0 1]]
+                                                   [[1 1 1] [1 0 1] [0 1 1]]))))
   )
 
 

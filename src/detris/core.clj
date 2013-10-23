@@ -98,12 +98,7 @@
 
 (defn merge-n-rows [rows1 rows2]
   "Applies the rules of merge-rows for each pair of vectors in N vectors."
-
-  (loop [result rows1
-         acc 0]
-    (cond (= acc (count rows1)) result
-          :else (recur (assoc result acc (merge-rows (get rows1 acc) (get rows2 acc)))
-                       (inc acc)))))
+  (into [] (map #(merge-rows %1 %2) rows1 rows2)))
 
 (defn row-conflict? [row1 row2]
   "Given 2 vectors, each containing only 1s or 0s, determines if adding the elements at
